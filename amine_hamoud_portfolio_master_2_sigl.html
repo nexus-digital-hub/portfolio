@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amine HAMOUD — Master 2 SIGL</title>
+  <meta name="description" content="Amine HAMOUD — Master 2 Informatique, Systèmes d'Information & Génie Logiciel (SIGL). Full-Stack Web Development, REST/MVC Backends, Privacy-First AI & nexus-digital-hub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            abyss: '#090d16',
+            surface: '#0f172a',
+            accent: '#6366f1',
+            skyAccent: '#38bdf8'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            arabic: ['Cairo', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #090d16;
+      color: #cbd5e1;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    html[dir="rtl"] body {
+      font-family: 'Cairo', system-ui, sans-serif;
+    }
+
+    #spotlight {
+      background: radial-gradient(
+        600px circle at var(--x, 50%) var(--y, 20%),
+        rgba(99, 102, 241, 0.11),
+        rgba(56, 189, 248, 0.04) 42%,
+        transparent 80%
+      );
+    }
+
+    .nav-link .nav-line {
+      transition: width 0.25s ease, background-color 0.25s ease;
+    }
+
+    .nav-link.active .nav-line {
+      width: 3.5rem;
+      background-color: #818cf8;
+    }
+
+    .nav-link.active .nav-label {
+      color: #f8fafc;
+    }
+
+    @media (min-width: 1024px) {
+      .projects-grid:hover .project-item:not(:hover) {
+        opacity: 0.55;
+      }
+    }
+
+    .project-item {
+      transition: opacity 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+    }
+
+    @keyframes toastSlide {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .toast-show {
+      animation: toastSlide 0.22s ease forwards;
+    }
+  </style>
+</head>
+<body class="bg-abyss text-slate-300 antialiased selection:bg-indigo-500/25 selection:text-indigo-200 relative">
+
+  <div id="spotlight" class="pointer-events-none fixed inset-0 z-30 hidden lg:block" aria-hidden="true"></div>
+
+  <div class="mx-auto min-h-screen max-w-6xl px-5 py-10 sm:px-8 md:px-12 lg:px-16 lg:py-0">
+    <div class="lg:flex lg:justify-between lg:gap-14">
+
+      <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-5/12 lg:flex-col lg:justify-between lg:py-16">
+        <div>
+          <div class="mb-8 flex items-center justify-between gap-3">
+            <div class="inline-flex items-center rounded-full border border-slate-800 bg-surface/80 p-1 backdrop-blur-md" role="group" aria-label="Language switcher">
+              <button type="button" data-lang="fr" class="lang-btn rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+                FR
+              </button>
+              <button type="button" data-lang="en" class="lang-btn rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors text-slate-400 hover:text-slate-100 border border-transparent">
+                EN
+              </button>
+              <button type="button" data-lang="ar" class="lang-btn rounded-full px-3 py-1.5 text-xs font-semibold tracking-wide transition-colors text-slate-400 hover:text-slate-100 border border-transparent font-arabic">
+                AR
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-5 flex items-center gap-4">
+            <div class="relative h-[88px] w-[88px] shrink-0 overflow-hidden rounded-full border-2 border-indigo-500/40 bg-gradient-to-br from-indigo-500/20 via-surface to-slate-900 shadow-lg ring-4 ring-slate-900/90 flex items-center justify-center">
+              <img
+                src="./assets/profile.jpg"
+                alt="Amine HAMOUD"
+                class="h-full w-full object-cover"
+                onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+              />
+              <span class="hidden select-none text-2xl font-extrabold tracking-tight bg-gradient-to-br from-slate-100 to-indigo-300 bg-clip-text text-transparent">
+                AH
+              </span>
+            </div>
+            <div>
+              <h1 class="text-3xl font-extrabold tracking-tight text-slate-50 sm:text-4xl">
+                <a href="#about" class="hover:text-indigo-300 transition-colors">Amine HAMOUD</a>
+              </h1>
+              <p class="mt-1 text-xs font-medium text-indigo-300 sm:text-sm" data-i18n="degree">
+                Master 2 Informatique — Systèmes d'Information &amp; Génie Logiciel (SIGL)
+              </p>
+            </div>
+          </div>
+
+          <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-400 sm:text-base" data-i18n="tagline">
+            Conception d'applications web fiables, backends REST/MVC, pipelines IA respectueux de la vie privée et boutiques en ligne sur mesure.
+          </p>
+
+          <nav class="mt-10 hidden lg:block" aria-label="Primary navigation">
+            <ul class="space-y-1.5 w-max">
+              <li>
+                <a href="#about" class="nav-link active group flex items-center py-2.5">
+                  <span class="nav-line me-4 h-px w-8 bg-slate-600 group-hover:w-14 group-hover:bg-indigo-400"></span>
+                  <span class="nav-label text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-100" data-i18n="navAbout">
+                    À propos / SIGL
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#projects" class="nav-link group flex items-center py-2.5">
+                  <span class="nav-line me-4 h-px w-8 bg-slate-600 group-hover:w-14 group-hover:bg-indigo-400"></span>
+                  <span class="nav-label text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-100" data-i18n="navProjects">
+                    Projets
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#stack" class="nav-link group flex items-center py-2.5">
+                  <span class="nav-line me-4 h-px w-8 bg-slate-600 group-hover:w-14 group-hover:bg-indigo-400"></span>
+                  <span class="nav-label text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-100" data-i18n="navStack">
+                    Stack
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#contact" class="nav-link group flex items-center py-2.5">
+                  <span class="nav-line me-4 h-px w-8 bg-slate-600 group-hover:w-14 group-hover:bg-indigo-400"></span>
+                  <span class="nav-label text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-100" data-i18n="navContact">
+                    Contact
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="mt-6 flex flex-wrap gap-2 lg:hidden" aria-label="Mobile navigation">
+            <a href="#about" class="rounded-lg border border-slate-800 bg-surface/70 px-3 py-2 text-xs font-medium text-slate-300 hover:border-indigo-400/40 hover:text-indigo-300" data-i18n="navAbout">À propos / SIGL</a>
+            <a href="#projects" class="rounded-lg border border-slate-800 bg-surface/70 px-3 py-2 text-xs font-medium text-slate-300 hover:border-indigo-400/40 hover:text-indigo-300" data-i18n="navProjects">Projets</a>
+            <a href="#stack" class="rounded-lg border border-slate-800 bg-surface/70 px-3 py-2 text-xs font-medium text-slate-300 hover:border-indigo-400/40 hover:text-indigo-300" data-i18n="navStack">Stack</a>
+            <a href="#contact" class="rounded-lg border border-slate-800 bg-surface/70 px-3 py-2 text-xs font-medium text-slate-300 hover:border-indigo-400/40 hover:text-indigo-300" data-i18n="navContact">Contact</a>
+          </nav>
+        </div>
+
+        <ul class="mt-8 flex flex-wrap items-center gap-2.5 lg:mt-0" aria-label="Profile links">
+          <li>
+            <a href="https://github.com/Amine8991" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-surface/70 px-3.5 py-2.5 text-xs font-medium text-slate-300 transition-colors hover:border-indigo-400/40 hover:text-white">
+              <svg class="h-4 w-4 text-slate-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              <span>@Amine8991</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/nexus-digital-hub" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-surface/70 px-3.5 py-2.5 text-xs font-medium text-slate-300 transition-colors hover:border-indigo-400/40 hover:text-white">
+              <svg class="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              <span>nexus-digital-hub</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:amineamineh98@gmail.com"
+               class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-surface/70 px-3.5 py-2.5 text-xs font-medium text-slate-300 transition-colors hover:border-indigo-400/40 hover:text-white">
+              <svg class="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span data-i18n="linkEmail">Email</span>
+            </a>
+          </li>
+        </ul>
+      </header>
+
+      <main class="pt-14 lg:w-7/12 lg:py-16 space-y-24">
+
+        <section id="about" class="scroll-mt-16 lg:scroll-mt-24">
+          <div class="mb-6 flex items-center gap-3 lg:hidden">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400" data-i18n="navAbout">À propos / SIGL</h2>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+
+          <div class="space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
+            <p data-i18n="bioP1">
+              Titulaire d'un <strong class="font-semibold text-slate-100">Master 2 en Informatique — Systèmes d'Information &amp; Génie Logiciel (SIGL)</strong>, je développe des architectures web complètes avec <strong class="font-semibold text-slate-100">Node.js/Express</strong> et <strong class="font-semibold text-slate-100">ASP.NET MVC</strong>, en mettant l'accent sur la qualité logicielle et la structuration des données.
+            </p>
+            <p data-i18n="bioP2">
+              J'intègre des mécanismes d'anonymisation locale des données personnelles côté serveur conformes aux <strong class="font-semibold text-slate-100">lois algériennes 18-07 et 25-11</strong> avant tout traitement externe, et je déploie des vitrines et plateformes commerciales sur GitHub Pages via <strong class="font-semibold text-indigo-300">nexus-digital-hub</strong>.
+            </p>
+          </div>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-slate-800/90 bg-surface/60 p-4 transition-colors hover:border-indigo-500/40">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300 border border-indigo-500/20">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+              </div>
+              <h3 class="text-sm font-semibold text-slate-100" data-i18n="pillar1Title">Génie Logiciel &amp; Architecture</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-400" data-i18n="pillar1Desc">
+                Architectures modulaires REST &amp; MVC, maintenabilité du code et livraison continue via Git.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800/90 bg-surface/60 p-4 transition-colors hover:border-sky-400/40">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500/15 text-sky-300 border border-sky-500/20">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                </svg>
+              </div>
+              <h3 class="text-sm font-semibold text-slate-100" data-i18n="pillar2Title">Systèmes d'Information &amp; Données</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-400" data-i18n="pillar2Desc">
+                Modélisation SI, jeux de données JSON structurés et pipelines d'évaluation assistés par IA.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800/90 bg-surface/60 p-4 transition-colors hover:border-emerald-400/40">
+              <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-300 border border-emerald-500/20">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <h3 class="text-sm font-semibold text-slate-100" data-i18n="pillar3Title">Conformité &amp; Protection des Données</h3>
+              <p class="mt-1.5 text-xs leading-relaxed text-slate-400" data-i18n="pillar3Desc">
+                Anonymisation PII locale côté serveur alignée sur les exigences des lois 18-07 et 25-11.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-2.5 rounded-2xl border border-slate-800/80 bg-surface/40 px-4 py-3.5">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 me-2" data-i18n="spokenLanguagesLabel">Langues :</span>
+            <span class="rounded-full border border-indigo-400/25 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-slate-100">Français</span>
+            <span class="rounded-full border border-emerald-400/25 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-slate-100 font-arabic">العربية</span>
+            <span class="rounded-full border border-sky-400/25 bg-sky-500/10 px-3 py-1 text-xs font-medium text-slate-100">English</span>
+            <span class="rounded-full border border-amber-400/25 bg-amber-500/10 px-3 py-1 text-xs font-medium text-slate-100">Español</span>
+          </div>
+        </section>
+
+        <section id="projects" class="scroll-mt-16 lg:scroll-mt-24">
+          <div class="mb-6 flex items-center gap-3">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400" data-i18n="projectsHeading">Projets Phares</h2>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+
+          <div class="projects-grid space-y-6">
+
+            <article class="project-item group relative rounded-2xl border border-slate-800/80 bg-surface/45 p-5 hover:border-indigo-400/35 hover:bg-surface/80">
+              <div class="grid gap-5 sm:grid-cols-12 items-start">
+                <div class="sm:col-span-5">
+                  <div class="aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-700/70 bg-abyss">
+                    <img
+                      src="./assets/bac-ai-engine.png"
+                      alt="Baccalauréat ONEC AI Assessment Engine"
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                    />
+                    <div class="hidden h-full w-full bg-gradient-to-br from-slate-900 via-abyss to-indigo-950/60 p-3 flex flex-col justify-between">
+                      <div class="flex items-center justify-between">
+                        <span class="font-mono text-[9px] text-indigo-300">ONEC 2021–2025</span>
+                        <span class="rounded bg-emerald-500/15 px-1.5 py-0.5 font-mono text-[8px] text-emerald-300">PII SAFE</span>
+                      </div>
+                      <svg viewBox="0 0 220 100" class="w-full h-auto my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="20" width="56" height="36" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-opacity="0.65" stroke-width="1.2"/>
+                        <text x="36" y="36" text-anchor="middle" fill="#e2e8f0" font-size="8" font-family="monospace">JSON</text>
+                        <text x="36" y="47" text-anchor="middle" fill="#38bdf8" font-size="6.5" font-family="monospace">Rubrics</text>
+                        <path d="M64 38 H82" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3 2"/>
+                        <rect x="82" y="16" width="56" height="44" rx="6" fill="#064e3b" fill-opacity="0.35" stroke="#34d399" stroke-opacity="0.7" stroke-width="1.2"/>
+                        <text x="110" y="35" text-anchor="middle" fill="#6ee7b7" font-size="7.5" font-family="monospace">PII Filter</text>
+                        <text x="110" y="47" text-anchor="middle" fill="#a7f3d0" font-size="6" font-family="monospace">18-07/25-11</text>
+                        <path d="M138 38 H156" stroke="#818cf8" stroke-width="1.2" stroke-dasharray="3 2"/>
+                        <rect x="156" y="20" width="56" height="36" rx="6" fill="#1e1b4b" fill-opacity="0.75" stroke="#818cf8" stroke-opacity="0.75" stroke-width="1.2"/>
+                        <text x="184" y="36" text-anchor="middle" fill="#e0e7ff" font-size="7.5" font-family="monospace">Gemini</text>
+                        <text x="184" y="47" text-anchor="middle" fill="#818cf8" font-size="6.5" font-family="monospace">Flash AI</text>
+                        <rect x="28" y="72" width="164" height="16" rx="4" fill="#1e293b"/>
+                        <text x="110" y="82.5" text-anchor="middle" fill="#94a3b8" font-size="6.5" font-family="monospace">POST /api/evaluate → 200 OK</text>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="sm:col-span-7">
+                  <h3 class="text-base font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">
+                    <a href="https://github.com/Amine8991" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 after:absolute after:inset-0">
+                      <span data-i18n="proj1Title">Moteur d'Évaluation Baccalauréat ONEC (2021–2025)</span>
+                      <svg class="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+                      </svg>
+                    </a>
+                  </h3>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-400 sm:text-sm" data-i18n="proj1Desc">
+                    API REST Node.js/Express structurant les sujets et barèmes officiels en JSON, couplée à Gemini Flash avec anonymisation PII locale conforme aux lois 18-07 et 25-11.
+                  </p>
+                  <ul class="mt-4 flex flex-wrap gap-1.5">
+                    <li class="rounded-full bg-indigo-500/15 px-2.5 py-1 font-mono text-[11px] text-indigo-300">Node.js</li>
+                    <li class="rounded-full bg-indigo-500/15 px-2.5 py-1 font-mono text-[11px] text-indigo-300">Express</li>
+                    <li class="rounded-full bg-sky-500/15 px-2.5 py-1 font-mono text-[11px] text-sky-300">Gemini Flash</li>
+                    <li class="rounded-full bg-emerald-500/15 px-2.5 py-1 font-mono text-[11px] text-emerald-300">PII 18-07 / 25-11</li>
+                    <li class="rounded-full bg-slate-800 px-2.5 py-1 font-mono text-[11px] text-slate-300">JSON</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-item group relative rounded-2xl border border-slate-800/80 bg-surface/45 p-5 hover:border-indigo-400/35 hover:bg-surface/80">
+              <div class="grid gap-5 sm:grid-cols-12 items-start">
+                <div class="sm:col-span-5">
+                  <div class="aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-700/70 bg-abyss">
+                    <img
+                      src="./assets/le-sur-mesure.png"
+                      alt="Le Sur Mesure"
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                    />
+                    <div class="hidden h-full w-full bg-gradient-to-br from-stone-900 via-abyss to-amber-950/40 p-3 flex flex-col justify-between">
+                      <div class="flex items-center justify-between">
+                        <span class="font-mono text-[9px] text-amber-300">LE SUR MESURE</span>
+                        <span class="font-mono text-[8px] text-slate-400">nexus-digital-hub</span>
+                      </div>
+                      <svg viewBox="0 0 220 100" class="w-full h-auto my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="20" y1="86" x2="200" y2="86" stroke="#d97706" stroke-opacity="0.35" stroke-width="1"/>
+                        <rect x="74" y="14" width="72" height="72" rx="2" fill="#1c1917" stroke="#f59e0b" stroke-opacity="0.7" stroke-width="1.4"/>
+                        <line x1="110" y1="14" x2="110" y2="86" stroke="#f59e0b" stroke-opacity="0.6" stroke-width="1.2"/>
+                        <rect x="81" y="22" width="22" height="25" rx="1" stroke="#fbbf24" stroke-opacity="0.45" stroke-width="1"/>
+                        <rect x="117" y="22" width="22" height="25" rx="1" stroke="#fbbf24" stroke-opacity="0.45" stroke-width="1"/>
+                        <rect x="81" y="54" width="22" height="24" rx="1" stroke="#fbbf24" stroke-opacity="0.45" stroke-width="1"/>
+                        <rect x="117" y="54" width="22" height="24" rx="1" stroke="#fbbf24" stroke-opacity="0.45" stroke-width="1"/>
+                        <circle cx="105" cy="50" r="1.8" fill="#fbbf24"/>
+                        <circle cx="115" cy="50" r="1.8" fill="#fbbf24"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="sm:col-span-7">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <h3 class="text-base font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">
+                      <a href="https://nexus-digital-hub.github.io/le-sur-mesure/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 after:absolute after:inset-0">
+                        <span data-i18n="proj2Title">Le Sur Mesure</span>
+                      </a>
+                    </h3>
+                    <span class="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300">
+                      <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                      <span data-i18n="liveSiteBadge">Voir le site</span>
+                      <svg class="h-3 w-3 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-400 sm:text-sm" data-i18n="proj2Desc">
+                    Présence web sur mesure pour une entreprise familiale de menuiserie et portes, déployée sur GitHub Pages sous l'organisation nexus-digital-hub.
+                  </p>
+                  <ul class="mt-4 flex flex-wrap gap-1.5">
+                    <li class="rounded-full bg-indigo-500/15 px-2.5 py-1 font-mono text-[11px] text-indigo-300">HTML5</li>
+                    <li class="rounded-full bg-sky-500/15 px-2.5 py-1 font-mono text-[11px] text-sky-300">Tailwind CSS</li>
+                    <li class="rounded-full bg-slate-800 px-2.5 py-1 font-mono text-[11px] text-slate-300">GitHub Pages</li>
+                    <li class="rounded-full bg-slate-800 px-2.5 py-1 font-mono text-[11px] text-slate-300">nexus-digital-hub</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-item group relative rounded-2xl border border-slate-800/80 bg-surface/45 p-5 hover:border-indigo-400/35 hover:bg-surface/80">
+              <div class="grid gap-5 sm:grid-cols-12 items-start">
+                <div class="sm:col-span-5">
+                  <div class="aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-700/70 bg-abyss">
+                    <img
+                      src="./assets/petite-maille.png"
+                      alt="Petite Maille Shop"
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                    />
+                    <div class="hidden h-full w-full bg-gradient-to-br from-rose-950/50 via-abyss to-orange-950/40 p-3 flex flex-col justify-between">
+                      <div class="flex items-center justify-between">
+                        <span class="font-mono text-[9px] text-rose-300">PETITE MAILLE</span>
+                        <span class="font-mono text-[8px] text-orange-200/70">E-COMMERCE</span>
+                      </div>
+                      <svg viewBox="0 0 220 100" class="w-full h-auto my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M110 24 C110 24, 118 12, 131 15 C127 25, 117 27, 110 24 Z" fill="#34d399" fill-opacity="0.3" stroke="#6ee7b7" stroke-width="1.4" stroke-linejoin="round"/>
+                        <path d="M110 28 C91 24, 76 40, 80 59 C83 76, 99 84, 110 88 C121 84, 137 76, 140 59 C144 40, 129 24, 110 28 Z" fill="#fb923c" fill-opacity="0.16" stroke="#fda4af" stroke-width="1.6"/>
+                        <path d="M89 46 Q100 52 110 46 Q120 52 131 46" stroke="#fdba74" stroke-opacity="0.7" stroke-width="1.2" stroke-dasharray="3 2.5" stroke-linecap="round"/>
+                        <path d="M86 59 Q98 66 110 59 Q122 66 134 59" stroke="#fda4af" stroke-opacity="0.7" stroke-width="1.2" stroke-dasharray="3 2.5" stroke-linecap="round"/>
+                        <path d="M95 72 Q110 78 125 72" stroke="#fdba74" stroke-opacity="0.6" stroke-width="1.2" stroke-dasharray="3 2.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="sm:col-span-7">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <h3 class="text-base font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">
+                      <a href="https://nexus-digital-hub.github.io/Chai-maille/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 after:absolute after:inset-0">
+                        <span data-i18n="proj3Title">Petite Maille Shop</span>
+                      </a>
+                    </h3>
+                    <span class="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-500/15 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300">
+                      <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                      <span data-i18n="liveSiteBadge">Voir le site</span>
+                      <svg class="h-3 w-3 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+                      </svg>
+                    </span>
+                  </div>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-400 sm:text-sm" data-i18n="proj3Desc">
+                    Boutique e-commerce dédiée aux créations artisanales au crochet, déployée sur GitHub Pages avec mise en valeur produit soignée et navigation fluide.
+                  </p>
+                  <ul class="mt-4 flex flex-wrap gap-1.5">
+                    <li class="rounded-full bg-indigo-500/15 px-2.5 py-1 font-mono text-[11px] text-indigo-300">E-Commerce</li>
+                    <li class="rounded-full bg-sky-500/15 px-2.5 py-1 font-mono text-[11px] text-sky-300">JavaScript</li>
+                    <li class="rounded-full bg-rose-500/15 px-2.5 py-1 font-mono text-[11px] text-rose-300">UI Design</li>
+                    <li class="rounded-full bg-slate-800 px-2.5 py-1 font-mono text-[11px] text-slate-300">GitHub Pages</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-item group relative rounded-2xl border border-slate-800/80 bg-surface/45 p-5 hover:border-indigo-400/35 hover:bg-surface/80">
+              <div class="grid gap-5 sm:grid-cols-12 items-start">
+                <div class="sm:col-span-5">
+                  <div class="aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-700/70 bg-abyss">
+                    <img
+                      src="./assets/thiqa-logo.svg"
+                      alt="Brand Identity & Vector Design"
+                      class="h-full w-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                      onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');"
+                    />
+                    <div class="hidden h-full w-full bg-gradient-to-br from-slate-900 via-abyss to-indigo-950/50 p-3 flex flex-col justify-between">
+                      <div class="flex items-center justify-between">
+                        <span class="font-mono text-[9px] text-indigo-300">SVG • VECTOR</span>
+                        <span class="font-mono text-[8px] text-slate-400">BRAND MARKS</span>
+                      </div>
+                      <svg viewBox="0 0 220 100" class="w-full h-auto my-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="74,20 100,34 100,66 74,80 48,66 48,34" fill="#6366f1" fill-opacity="0.14" stroke="#818cf8" stroke-width="1.6"/>
+                        <path d="M63 50 L71 58 L86 41" stroke="#38bdf8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <text x="114" y="53" fill="#f8fafc" font-size="18" font-weight="800" letter-spacing="3" font-family="Inter, sans-serif">THIQA</text>
+                        <text x="115" y="67" fill="#818cf8" font-size="7" letter-spacing="2" font-family="monospace">VECTOR IDENTITY</text>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="sm:col-span-7">
+                  <h3 class="text-base font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">
+                    <a href="https://github.com/nexus-digital-hub" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 after:absolute after:inset-0">
+                      <span data-i18n="proj4Title">Identités de Marque (THIQA &amp; Crochet)</span>
+                      <svg class="h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+                      </svg>
+                    </a>
+                  </h3>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-400 sm:text-sm" data-i18n="proj4Desc">
+                    Création de marques vectorielles SVG à fond transparent et logos minimalistes prêts pour le web et l'impression, incluant l'identité THIQA et des emblèmes artisanaux.
+                  </p>
+                  <ul class="mt-4 flex flex-wrap gap-1.5">
+                    <li class="rounded-full bg-indigo-500/15 px-2.5 py-1 font-mono text-[11px] text-indigo-300">SVG</li>
+                    <li class="rounded-full bg-sky-500/15 px-2.5 py-1 font-mono text-[11px] text-sky-300">Vector Design</li>
+                    <li class="rounded-full bg-slate-800 px-2.5 py-1 font-mono text-[11px] text-slate-300">Brand Identity</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <section id="stack" class="scroll-mt-16 lg:scroll-mt-24">
+          <div class="mb-6 flex items-center gap-3">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400" data-i18n="stackHeading">Stack Technique</h2>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div class="rounded-2xl border border-slate-800/80 bg-surface/50 p-5">
+              <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-indigo-300" data-i18n="stackCol1">Backend &amp; SI</h3>
+              <ul class="mt-3.5 space-y-2 text-xs text-slate-300 sm:text-sm">
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>Node.js</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>Express</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>ASP.NET MVC</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>REST APIs</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-400"></span>JSON Data Modeling</li>
+              </ul>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800/80 bg-surface/50 p-5">
+              <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-sky-300" data-i18n="stackCol2">Frontend &amp; Design</h3>
+              <ul class="mt-3.5 space-y-2 text-xs text-slate-300 sm:text-sm">
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>HTML5</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>CSS3</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>Tailwind CSS</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>JavaScript</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>SVG / Brand Identity</li>
+              </ul>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800/80 bg-surface/50 p-5">
+              <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-emerald-300" data-i18n="stackCol3">DevOps &amp; Conformité</h3>
+              <ul class="mt-3.5 space-y-2 text-xs text-slate-300 sm:text-sm">
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Git</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Git Bash</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>GitHub Pages</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>nexus-digital-hub</li>
+                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>PII Anonymization 18-07 / 25-11</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="scroll-mt-16 lg:scroll-mt-24">
+          <div class="mb-6 flex items-center gap-3">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400" data-i18n="contactHeading">Contact</h2>
+            <div class="h-px flex-1 bg-slate-800"></div>
+          </div>
+
+          <div class="rounded-2xl border border-slate-800/90 bg-gradient-to-br from-surface/90 to-abyss p-6 sm:p-8">
+            <h3 class="text-xl font-bold text-slate-50 sm:text-2xl" data-i18n="contactTitle">
+              Discutons de votre projet ou opportunité
+            </h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-slate-400" data-i18n="contactDesc">
+              Disponible pour des opportunités en ingénierie logicielle / SI ainsi que des missions de développement web et e-commerce.
+            </p>
+
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <a href="mailto:amineamineh98@gmail.com"
+                 class="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-500">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span data-i18n="btnEmail">Envoyer un email</span>
+              </a>
+
+              <button type="button" id="copyEmailBtn"
+                      class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-abyss/80 px-5 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-indigo-400/50 hover:text-indigo-300">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span data-i18n="btnCopy">Copier l'email</span>
+              </button>
+            </div>
+
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-slate-800/80 pt-5 text-xs text-slate-400">
+              <span class="font-mono text-slate-300 select-all">amineamineh98@gmail.com</span>
+              <div class="flex items-center gap-4">
+                <a href="https://github.com/Amine8991" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-300 transition-colors">GitHub @Amine8991 ↗</a>
+                <a href="https://github.com/nexus-digital-hub" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-300 transition-colors">nexus-digital-hub ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <footer class="mt-12 border-t border-slate-800/60 pt-6 pb-8 text-xs text-slate-500">
+            <p>&copy; 2026 Amine HAMOUD</p>
+          </footer>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <div id="copyToast" role="status" aria-live="polite"
+       class="pointer-events-none fixed bottom-6 end-6 z-50 hidden items-center gap-2 rounded-xl border border-emerald-500/30 bg-surface/95 px-4 py-3 text-xs font-semibold text-emerald-300 shadow-2xl backdrop-blur-md">
+    <svg class="h-4 w-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+    <span data-i18n="toastCopied">Adresse email copiée</span>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const i18n = {
+        fr: {
+          dir: 'ltr',
+          title: 'Amine HAMOUD — Master 2 SIGL',
+          degree: "Master 2 Informatique — Systèmes d'Information & Génie Logiciel (SIGL)",
+          tagline: "Conception d'applications web fiables, backends REST/MVC, pipelines IA respectueux de la vie privée et boutiques en ligne sur mesure.",
+          navAbout: 'À propos / SIGL',
+          navProjects: 'Projets',
+          navStack: 'Stack',
+          navContact: 'Contact',
+          linkEmail: 'Email',
+          bioP1: "Titulaire d'un <strong class='font-semibold text-slate-100'>Master 2 en Informatique — Systèmes d'Information &amp; Génie Logiciel (SIGL)</strong>, je développe des architectures web complètes avec <strong class='font-semibold text-slate-100'>Node.js/Express</strong> et <strong class='font-semibold text-slate-100'>ASP.NET MVC</strong>, en mettant l'accent sur la qualité logicielle et la structuration des données.",
+          bioP2: "J'intègre des mécanismes d'anonymisation locale des données personnelles côté serveur conformes aux <strong class='font-semibold text-slate-100'>lois algériennes 18-07 et 25-11</strong> avant tout traitement externe, et je déploie des vitrines et plateformes commerciales sur GitHub Pages via <strong class='font-semibold text-indigo-300'>nexus-digital-hub</strong>.",
+          pillar1Title: 'Génie Logiciel & Architecture',
+          pillar1Desc: 'Architectures modulaires REST & MVC, maintenabilité du code et livraison continue via Git.',
+          pillar2Title: "Systèmes d'Information & Données",
+          pillar2Desc: "Modélisation SI, jeux de données JSON structurés et pipelines d'évaluation assistés par IA.",
+          pillar3Title: 'Conformité & Protection des Données',
+          pillar3Desc: 'Anonymisation PII locale côté serveur alignée sur les exigences des lois 18-07 et 25-11.',
+          spokenLanguagesLabel: 'Langues :',
+          projectsHeading: 'Projets Phares',
+          liveSiteBadge: 'Voir le site',
+          proj1Title: "Moteur d'Évaluation Baccalauréat ONEC (2021–2025)",
+          proj1Desc: "API REST Node.js/Express structurant les sujets et barèmes officiels en JSON, couplée à Gemini Flash avec anonymisation PII locale conforme aux lois 18-07 et 25-11.",
+          proj2Title: 'Le Sur Mesure',
+          proj2Desc: "Présence web sur mesure pour une entreprise familiale de menuiserie et portes, déployée sur GitHub Pages sous l'organisation nexus-digital-hub.",
+          proj3Title: 'Petite Maille Shop',
+          proj3Desc: 'Boutique e-commerce dédiée aux créations artisanales au crochet, déployée sur GitHub Pages avec mise en valeur produit soignée et navigation fluide.',
+          proj4Title: 'Identités de Marque (THIQA & Crochet)',
+          proj4Desc: "Création de marques vectorielles SVG à fond transparent et logos minimalistes prêts pour le web et l'impression, incluant l'identité THIQA et des emblèmes artisanaux.",
+          stackHeading: 'Stack Technique',
+          stackCol1: 'Backend & SI',
+          stackCol2: 'Frontend & Design',
+          stackCol3: 'DevOps & Conformité',
+          contactHeading: 'Contact',
+          contactTitle: 'Discutons de votre projet ou opportunité',
+          contactDesc: 'Disponible pour des opportunités en ingénierie logicielle / SI ainsi que des missions de développement web et e-commerce.',
+          btnEmail: 'Envoyer un email',
+          btnCopy: "Copier l'email",
+          toastCopied: 'Adresse email copiée'
+        },
+        en: {
+          dir: 'ltr',
+          title: 'Amine HAMOUD — Master 2 SIGL',
+          degree: 'M.Sc. Computer Science — Information Systems & Software Engineering (SIGL)',
+          tagline: 'Building reliable web applications, REST/MVC backends, privacy-first AI pipelines, and bespoke commercial storefronts.',
+          navAbout: 'About / SIGL',
+          navProjects: 'Projects',
+          navStack: 'Stack',
+          navContact: 'Contact',
+          linkEmail: 'Email',
+          bioP1: "Holding a <strong class='font-semibold text-slate-100'>Master 2 in Computer Science — Information Systems &amp; Software Engineering (SIGL)</strong>, I build full-stack web architectures with <strong class='font-semibold text-slate-100'>Node.js/Express</strong> and <strong class='font-semibold text-slate-100'>ASP.NET MVC</strong>, focused on clean engineering and structured data modeling.",
+          bioP2: "I implement local server-side PII anonymization aligned with <strong class='font-semibold text-slate-100'>Algerian Laws 18-07 and 25-11</strong> before external AI calls, and ship production websites and storefronts on GitHub Pages under <strong class='font-semibold text-indigo-300'>nexus-digital-hub</strong>.",
+          pillar1Title: 'Software Engineering & Architecture',
+          pillar1Desc: 'Modular REST & MVC architectures, maintainable codebases, and Git-driven delivery.',
+          pillar2Title: 'Information Systems & Data',
+          pillar2Desc: 'IS modeling, structured JSON datasets, and AI-assisted evaluation workflows.',
+          pillar3Title: 'Compliance & Data Protection',
+          pillar3Desc: 'Local server-side PII scrubbing compliant with Algerian Laws 18-07 & 25-11.',
+          spokenLanguagesLabel: 'Languages:',
+          projectsHeading: 'Featured Projects',
+          liveSiteBadge: 'Live Site',
+          proj1Title: 'Baccalauréat ONEC AI Assessment Engine (2021–2025)',
+          proj1Desc: 'Node.js/Express REST API structuring official exams and scoring rubrics in JSON, powered by Gemini Flash with local PII anonymization (Laws 18-07 & 25-11).',
+          proj2Title: 'Le Sur Mesure',
+          proj2Desc: 'Custom web presence for a family woodworking and doors business, deployed on GitHub Pages under nexus-digital-hub.',
+          proj3Title: 'Petite Maille Shop',
+          proj3Desc: 'E-commerce storefront for handmade crochet goods deployed on GitHub Pages with clean product presentation and responsive UX.',
+          proj4Title: 'Brand Identities (THIQA & Crochet)',
+          proj4Desc: 'Transparent-background SVG brand marks and minimalist vector logos for web and print, including THIQA and handmade craft emblems.',
+          stackHeading: 'Technical Stack',
+          stackCol1: 'Backend & IS',
+          stackCol2: 'Frontend & Design',
+          stackCol3: 'DevOps & Compliance',
+          contactHeading: 'Contact',
+          contactTitle: "Let's discuss your project or opportunity",
+          contactDesc: 'Open to software engineering and IS roles as well as custom web and e-commerce projects.',
+          btnEmail: 'Send Email',
+          btnCopy: 'Copy Email',
+          toastCopied: 'Email copied to clipboard'
+        },
+        ar: {
+          dir: 'rtl',
+          title: 'أمين حمود — ماستر 2 SIGL',
+          degree: 'ماستر 2 إعلام آلي — أنظمة المعلومات وهندسة البرمجيات (SIGL)',
+          tagline: 'تطوير تطبيقات ويب موثوقة، واجهات REST و MVC، مسارات ذكاء اصطناعي تحترم الخصوصية، ومتاجر إلكترونية مخصصة.',
+          navAbout: 'نبذة / SIGL',
+          navProjects: 'المشاريع',
+          navStack: 'التقنيات',
+          navContact: 'تواصل',
+          linkEmail: 'البريد',
+          bioP1: "حاصل على شهادة <strong class='font-semibold text-slate-100'>ماستر 2 في الإعلام الآلي — أنظمة المعلومات وهندسة البرمجيات (SIGL)</strong>، أقوم ببناء تطبيقات ويب متكاملة باستخدام <strong class='font-semibold text-slate-100'>Node.js/Express</strong> و <strong class='font-semibold text-slate-100'>ASP.NET MVC</strong> مع التركيز على جودة البرمجيات وهيكلة البيانات.",
+          bioP2: "أعتمد آليات إخفاء محلي للبيانات الشخصية على الخادم وفق <strong class='font-semibold text-slate-100'>القانونين الجزائريين 18-07 و 25-11</strong> قبل أي معالجة خارجية، وأقوم بنشر المواقع والمتاجر عبر GitHub Pages ضمن <strong class='font-semibold text-indigo-300'>nexus-digital-hub</strong>.",
+          pillar1Title: 'هندسة البرمجيات والمعمارية',
+          pillar1Desc: 'معمارية معيارية REST و MVC، كود قابل للصيانة ونشر مستمر عبر Git.',
+          pillar2Title: 'أنظمة المعلومات والبيانات',
+          pillar2Desc: 'نمذجة أنظمة المعلومات، قواعد بيانات JSON مهيكلة ومسارات تقييم ذكية.',
+          pillar3Title: 'الامتثال وحماية البيانات',
+          pillar3Desc: 'إخفاء محلي للبيانات الشخصية (PII) على الخادم وفق القانونين 18-07 و 25-11.',
+          spokenLanguagesLabel: 'اللغات:',
+          projectsHeading: 'أبرز المشاريع',
+          liveSiteBadge: 'زيارة الموقع',
+          proj1Title: 'محرك تقييم البكالوريا ONEC بالذكاء الاصطناعي (2021–2025)',
+          proj1Desc: 'واجهة REST بـ Node.js/Express لهيكلة المواضيع وسلالم التنقيط بصيغة JSON، مدمجة مع Gemini Flash وإخفاء محلي للبيانات الشخصية وفق القانونين 18-07 و 25-11.',
+          proj2Title: 'لو سور ميزور (Le Sur Mesure)',
+          proj2Desc: 'موقع ويب مخصص لنشاط عائلي في النجارة والأبواب، منشور على GitHub Pages ضمن منظمة nexus-digital-hub.',
+          proj3Title: 'متجر Petite Maille Shop',
+          proj3Desc: 'متجر إلكتروني لإبداعات الكروشيه اليدوية منشور على GitHub Pages بتصميم أنيق وتجربة تصفح سلسة.',
+          proj4Title: 'الهويات البصرية (THIQA و Crochet)',
+          proj4Desc: 'تصميم شعارات وهويات بصرية SVG بخلفية شفافة للويب والطباعة، بما في ذلك علامة THIQA وشعارات حرفية بسيطة.',
+          stackHeading: 'المهارات التقنية',
+          stackCol1: 'الخلفية وأنظمة المعلومات',
+          stackCol2: 'الواجهة والتصميم',
+          stackCol3: 'النشر والامتثال',
+          contactHeading: 'تواصل معي',
+          contactTitle: 'لنناقش مشروعك القادم أو فرص العمل',
+          contactDesc: 'متاح لفرص هندسة البرمجيات وأنظمة المعلومات وكذلك مشاريع تطوير المواقع والمتاجر الإلكترونية.',
+          btnEmail: 'إرسال بريد إلكتروني',
+          btnCopy: 'نسخ البريد',
+          toastCopied: 'تم نسخ البريد الإلكتروني'
+        }
+      };
+
+      const htmlEl = document.documentElement;
+      const langBtns = document.querySelectorAll('.lang-btn');
+
+      function setLanguage(lang) {
+        const dict = i18n[lang] || i18n.fr;
+        htmlEl.setAttribute('lang', lang);
+        htmlEl.setAttribute('dir', dict.dir);
+        document.title = dict.title;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key] !== undefined) {
+            if (key === 'bioP1' || key === 'bioP2') {
+              el.innerHTML = dict[key];
+            } else {
+              el.textContent = dict[key];
+            }
+          }
+        });
+
+        langBtns.forEach(function (btn) {
+          const active = btn.getAttribute('data-lang') === lang;
+          btn.classList.toggle('bg-indigo-500/20', active);
+          btn.classList.toggle('text-indigo-300', active);
+          btn.classList.toggle('border-indigo-400/30', active);
+          btn.classList.toggle('text-slate-400', !active);
+          btn.classList.toggle('border-transparent', !active);
+        });
+
+        try {
+          localStorage.setItem('portfolio_lang', lang);
+        } catch (e) {}
+      }
+
+      langBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setLanguage(btn.getAttribute('data-lang'));
+        });
+      });
+
+      var savedLang = 'fr';
+      try {
+        var stored = localStorage.getItem('portfolio_lang');
+        if (stored && i18n[stored]) savedLang = stored;
+      } catch (e) {}
+      setLanguage(savedLang);
+
+      var spotlight = document.getElementById('spotlight');
+      if (spotlight) {
+        window.addEventListener('mousemove', function (e) {
+          spotlight.style.setProperty('--x', e.clientX + 'px');
+          spotlight.style.setProperty('--y', e.clientY + 'px');
+        }, { passive: true });
+      }
+
+      var sections = document.querySelectorAll('main section[id]');
+      var navLinks = document.querySelectorAll('.nav-link');
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var id = entry.target.getAttribute('id');
+              navLinks.forEach(function (link) {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+              });
+            }
+          });
+        }, { rootMargin: '-25% 0px -60% 0px', threshold: 0.05 });
+
+        sections.forEach(function (section) {
+          observer.observe(section);
+        });
+      }
+
+      var copyBtn = document.getElementById('copyEmailBtn');
+      var toast = document.getElementById('copyToast');
+      var toastTimer = null;
+
+      function showToast() {
+        if (!toast) return;
+        toast.classList.remove('hidden');
+        toast.classList.add('flex', 'toast-show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.add('hidden');
+          toast.classList.remove('flex', 'toast-show');
+        }, 2500);
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          try {
+            var input = document.createElement('textarea');
+            input.value = 'amineamineh98@gmail.com';
+            input.setAttribute('readonly', '');
+            input.style.position = 'fixed';
+            input.style.opacity = '0';
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            showToast();
+          } catch (e) {
+            showToast();
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
